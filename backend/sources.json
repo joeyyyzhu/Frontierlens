@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "sources": [
+    {
+      "id": "openai-publications",
+      "provider": "OpenAI",
+      "name": "OpenAI Research Publications",
+      "index_url": "https://openai.com/sitemap.xml/publication/",
+      "allowed_domains": ["openai.com", "cdn.openai.com"],
+      "priority": 10,
+      "enabled": true
+    },
+    {
+      "id": "anthropic-system-cards",
+      "provider": "Anthropic",
+      "name": "Anthropic Model System Cards",
+      "index_url": "https://www.anthropic.com/system-cards",
+      "allowed_domains": ["anthropic.com", "assets.anthropic.com", "www-cdn.anthropic.com"],
+      "priority": 20,
+      "enabled": true
+    },
+    {
+      "id": "deepmind-model-cards",
+      "provider": "Google DeepMind",
+      "name": "Google DeepMind Model Cards",
+      "index_url": "https://deepmind.google/models/model-cards/",
+      "allowed_domains": ["deepmind.google", "storage.googleapis.com"],
+      "priority": 30,
+      "enabled": true
+    },
+    {
+      "id": "qwen-official-report",
+      "provider": "Qwen",
+      "name": "Qwen Official Technical Report",
+      "index_url": "https://github.com/QwenLM/Qwen3",
+      "allowed_domains": ["github.com", "raw.githubusercontent.com"],
+      "allowed_path_prefixes": ["/QwenLM/"],
+      "priority": 40,
+      "enabled": true
+    }
+  ]
+}

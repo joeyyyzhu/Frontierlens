@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="FrontierLens — 看清变化，理解影响。AI 前沿技术情报平台。" />
+    <title>FrontierLens · AI Frontier Intelligence Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="#" aria-label="FrontierLens 首页">
+          <span class="brand-mark">F</span>
+          <span>FrontierLens</span>
+          <em>demo</em>
+        </a>
+        <p class="brand-tagline">See what changed.<br /><span>Understand why it matters.</span></p>
+
+        <nav class="primary-nav" aria-label="主导航">
+          <button class="nav-item active" data-view="brief">
+            <span class="nav-icon">⌁</span><span>发布速览</span>
+          </button>
+          <button class="nav-item" data-view="report">
+            <span class="nav-icon">▤</span><span>Tech Report</span>
+          </button>
+          <button class="nav-item" data-view="sources">
+            <span class="nav-icon">◫</span><span>全部来源</span>
+          </button>
+          <button class="nav-item" data-view="monitor">
+            <span class="nav-icon">◉</span><span>来源监控</span>
+          </button>
+        </nav>
+
+        <div class="sidebar-section">
+          <p class="eyebrow">最近发布</p>
+          <button class="model-row selected">
+            <span class="model-logo violet">A</span>
+            <span><strong>Aster 1</strong><small>今天更新</small></span>
+            <i></i>
+          </button>
+          <button class="model-row muted-model" title="Demo 中暂未开放">
+            <span class="model-logo dark">N</span>
+            <span><strong>Nova 3.2</strong><small>3 天前</small></span>
+          </button>
+          <button class="model-row muted-model" title="Demo 中暂未开放">
+            <span class="model-logo warm">S</span>
+            <span><strong>Solace R2</strong><small>上周</small></span>
+          </button>
+        </div>
+
+        <div class="sidebar-footer">
+          <div class="progress-ring" aria-label="今日阅读进度 68%"><span>68</span></div>
+          <div><strong>今日认知进度</strong><small>还需约 5 分钟</small></div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <button class="mobile-menu" aria-label="打开菜单">☰</button>
+          <div class="breadcrumb"><span>模型发布</span><b>/</b><strong>Aster 1</strong></div>
+          <div class="top-actions">
+            <button class="icon-button" id="searchButton" aria-label="搜索">⌕</button>
+            <button class="avatar" aria-label="个人中心">J</button>
+          </div>
+        </header>
+
+        <section class="view active" id="brief-view">
+          <div class="hero">
+            <div class="hero-copy">
+              <div class="status-line"><span class="status-dot"></span> FrontierLens Brief · 今日发布 · 演示数据</div>
+              <h1>Aster 1</h1>
+              <p class="hero-lede">一次面向长流程 Agent 的系统升级：更稳定地规划、调用工具，并在失败后继续完成任务。</p>
+              <div class="hero-meta">
+                <span><b>12 min</b> 建议阅读</span>
+                <span><b>4</b> 个核心变化</span>
+                <span><b>5</b> 类官方来源</span>
+              </div>
+              <div class="hero-actions">
+                <button class="primary-button" data-jump="changes">开始 15 分钟速览 <span>→</span></button>
+                <button class="secondary-button" data-view="report">阅读完整 Tech Report</button>
+              </div>
+            </div>
+            <div class="signal-card">
+              <div class="signal-head"><span>发布信号</span><strong>值得关注</strong></div>
+              <div class="signal-visual" aria-label="创新程度高，产品影响高">
+                <span class="orbit orbit-one"></span>
+                <span class="orbit orbit-two"></span>
+                <span class="signal-core">A1</span>
+                <i class="spark s1"></i><i class="spark s2"></i><i class="spark s3"></i>
+              </div>
+              <p>不是参数规模竞赛，而是把模型从“会回答”推向“能完成”。</p>
+              <div class="signal-tags"><span>Agent</span><span>Tool Use</span><span>Reliability</span></div>
+            </div>
+          </div>
+
+          <div class="content-grid" id="changes">
+            <section class="content-column">
+              <div class="section-heading">
+                <div><span class="step-number">01</span><h2>这次更新了什么</h2></div>
+                <p>只保留真正改变使用方式的四件事。</p>
+              </div>
+
+              <div class="change-list">
+                <article class="change-card featured" data-concept="deliberate-planning" tabindex="0">
+                  <div class="change-index">01</div>
+                  <div class="change-content">
+                    <div class="change-title-row"><span class="pill violet-pill">核心架构</span><small>点击建立直觉 ↗</small></div>
+                    <h3>Deliberate Planning</h3>
+                    <p>模型会先拆解长任务、识别风险，再决定调用哪些工具，而不是边生成边碰运气。</p>
+                    <div class="impact-line"><span>产品影响</span><strong>更长的 Agent 任务链</strong></div>
+                  </div>
+                  <span class="card-arrow">↗</span>
+                </article>
+
+                <article class="change-card" data-concept="tool-recovery" tabindex="0">
+                  <div class="change-index">02</div>
+                  <div class="change-content">
+                    <div class="change-title-row"><span class="pill blue-pill">可靠性</span><small>点击建立直觉 ↗</small></div>
+                    <h3>Tool Recovery</h3>
+                    <p>工具调用失败后，模型可以理解错误、调整参数并重试，而不是中断整个任务。</p>
+                    <div class="impact-line"><span>产品影响</span><strong>减少人工接管</strong></div>
+                  </div>
+                  <span class="card-arrow">↗</span>
+                </article>
+
+                <article class="change-card" data-concept="working-memory" tabindex="0">
+                  <div class="change-index">03</div>
+                  <div class="change-content">
+                    <div class="change-title-row"><span class="pill green-pill">上下文</span><small>点击建立直觉 ↗</small></div>
+                    <h3>Structured Working Memory</h3>
+                    <p>在长任务中持续维护目标、约束与执行状态，减少“看过但忘了”的情况。</p>
+                    <div class="impact-line"><span>产品影响</span><strong>工作流更连贯</strong></div>
+                  </div>
+                  <span class="card-arrow">↗</span>
+                </article>
+
+                <article class="change-card" data-concept="adaptive-compute" tabindex="0">
+                  <div class="change-index">04</div>
+                  <div class="change-content">
+                    <div class="change-title-row"><span class="pill amber-pill">效率</span><small>点击建立直觉 ↗</small></div>
+                    <h3>Adaptive Compute</h3>
+                    <p>简单任务快速作答，复杂任务自动投入更多推理资源，在速度与质量间动态平衡。</p>
+                    <div class="impact-line"><span>产品影响</span><strong>成本更可控</strong></div>
+                  </div>
+                  <span class="card-arrow">↗</span>
+                </article>
+              </div>
+
+              <section class="why-section">
+                <div class="section-heading compact">
+                  <div><span class="step-number">02</span><h2>为什么重要</h2></div>
+                </div>
+                <div class="impact-grid">
+                  <article><span>对 AI PM</span><h3>可以设计更完整的闭环任务</h3><p>从“给建议”升级到“执行、检查、修正并交付结果”。</p></article>
+                  <article><span>对工程团队</span><h3>异常处理从代码移向模型</h3><p>仍需边界控制，但常见失败不必全部手写兜底。</p></article>
+                  <article><span>对业务负责人</span><h3>关注完成率，而不只是单次准确率</h3><p>Agent 的真实价值开始由端到端结果衡量。</p></article>
+                </div>
+              </section>
+            </section>
+
+            <aside class="right-rail">
+              <div class="rail-card verdict-card">
+                <span class="rail-label">给你的结论</span>
+                <h3>如果你正在做 Agent，值得立刻看。</h3>
+                <p>优先关注规划、工具恢复和任务完成率；多模态能力不是本次重点。</p>
+                <div class="verdict-meter"><span style="width:86%"></span></div>
+                <div class="verdict-scale"><small>可跳过</small><small>强相关</small></div>
+              </div>
+
+              <div class="rail-card source-preview">
+                <div class="rail-title"><span class="rail-label">证据覆盖</span><button data-view="sources">查看全部</button></div>
+                <ul>
+                  <li class="primary-source"><span class="source-icon">TR</span><div><strong>Tech Report</strong><small>128 页 · 完整收录</small></div><b>主证据</b></li>
+                  <li><span class="source-icon">BL</span><div><strong>Official Blog</strong><small>产品定位与发布说明</small></div><b>补充</b></li>
+                  <li><span class="source-icon">BM</span><div><strong>Benchmark</strong><small>17 项评测结果</small></div><b>验证</b></li>
+                  <li><span class="source-icon">GH</span><div><strong>GitHub</strong><small>SDK 与示例代码</small></div><b>实现</b></li>
+                  <li><span class="source-icon">SR</span><div><strong>Safety Report</strong><small>风险与限制说明</small></div><b>边界</b></li>
+                </ul>
+              </div>
+
+              <div class="rail-card reading-route">
+                <span class="rail-label">Tech Report 阅读路线</span>
+                <h3>为 AI PM 精选 3 处</h3>
+                <button data-report-section="2"><span>01</span><div><strong>Executive Summary</strong><small>2 min · 第 3–6 页</small></div></button>
+                <button data-report-section="4"><span>02</span><div><strong>Agent Architecture</strong><small>5 min · 第 31–48 页</small></div></button>
+                <button data-report-section="6"><span>03</span><div><strong>Limitations</strong><small>3 min · 第 97–104 页</small></div></button>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="view report-view" id="report-view">
+          <div class="report-toolbar">
+            <div><span class="eyebrow">PRIMARY EVIDENCE</span><h1>Aster 1 Technical Report</h1><p>完整文献阅读 · 128 页 · Demo 节选</p></div>
+            <div class="report-actions"><button class="secondary-button" id="toggleHighlights">隐藏 FrontierLens 解读</button><button class="primary-button">打开原始 PDF ↗</button></div>
+          </div>
+          <div class="reader-layout">
+            <aside class="report-toc">
+              <span class="eyebrow">目录</span>
+              <button class="active" data-section="1"><i>01</i>Abstract</button>
+              <button data-section="2"><i>02</i>Executive Summary</button>
+              <button data-section="3"><i>03</i>Model Overview</button>
+              <button data-section="4"><i>04</i>Agent Architecture</button>
+              <button data-section="5"><i>05</i>Evaluation</button>
+              <button data-section="6"><i>06</i>Limitations</button>
+              <div class="toc-progress"><span>阅读进度</span><strong>18%</strong><div><i></i></div></div>
+            </aside>
+            <article class="paper-page">
+              <div class="paper-kicker">ASTER RESEARCH · TECHNICAL REPORT 2026</div>
+              <h1 id="paperTitle">Abstract</h1>
+              <p class="paper-authors">Aster Research Team</p>
+              <div id="paperContent"></div>
+            </article>
+            <aside class="atlas-notes">
+              <span class="eyebrow">FRONTIERLENS 解读</span>
+              <div class="note-card"><span>这一节在回答</span><h3 id="noteQuestion">这个模型最核心的变化是什么？</h3><p id="noteAnswer">Aster 1 的重点不是增加知识，而是提高长任务中的规划与恢复能力。</p></div>
+              <div class="note-card cited"><span>阅读提示</span><p id="noteTip">先看任务完成率，再看单步准确率；这是理解本报告的关键。</p><button>定位原文 ↗</button></div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="view sources-view" id="sources-view">
+          <div class="sources-header"><span class="eyebrow">EVIDENCE LIBRARY</span><h1>围绕 Aster 1 的全部来源</h1><p>Tech Report 保持第一优先级和完整性；其余来源回答不同问题，而不是取代原文。</p></div>
+          <div class="source-priority">
+            <article class="source-hero-card">
+              <div class="source-rank">01</div><span class="source-type">PRIMARY EVIDENCE</span><h2>Technical Report</h2><p>架构、训练方法、实验设计与局限的完整原始依据。</p>
+              <div class="source-stats"><span><b>128</b> 页</span><span><b>42</b> 图表</span><span><b>186</b> 引用</span></div>
+              <button class="primary-button" data-view="report">进入完整阅读</button>
+            </article>
+            <div class="source-grid">
+              <article><div><span class="source-rank">02</span><span class="pill blue-pill">为什么</span></div><h3>Official Blog</h3><p>理解发布背景、产品定位，以及团队为何选择这条技术路线。</p><button>查看 3 篇来源 ↗</button></article>
+              <article><div><span class="source-rank">03</span><span class="pill green-pill">效果</span></div><h3>Benchmark</h3><p>验证能力提升是否成立，并揭示评测口径与适用边界。</p><button>查看 17 项评测 ↗</button></article>
+              <article><div><span class="source-rank">04</span><span class="pill violet-pill">实现</span></div><h3>GitHub</h3><p>查看 SDK、工具调用协议、示例代码与可复现实现。</p><button>查看 4 个仓库 ↗</button></article>
+              <article><div><span class="source-rank">05</span><span class="pill amber-pill">边界</span></div><h3>Safety Report</h3><p>理解已知风险、红队测试、部署限制与仍未解决的问题。</p><button>查看完整报告 ↗</button></article>
+            </div>
+          </div>
+        </section>
+
+        <section class="view monitor-view" id="monitor-view">
+          <div class="monitor-header">
+            <div><span class="eyebrow">OFFICIAL SOURCE MONITOR</span><h1>官方来源监控</h1><p>按小时检查厂商官方入口，自动发现、保存并解析新的 Tech Report。</p></div>
+            <button class="primary-button" id="scanNowButton">立即扫描 <span>↻</span></button>
+          </div>
+          <div class="monitor-notice" id="monitorNotice">
+            <span class="status-dot"></span><p>正在连接 FrontierLens 数据服务…</p>
+          </div>
+          <div class="monitor-stats">
+            <article><span>监控厂商</span><strong id="providerCount">—</strong><small>官方白名单来源</small></article>
+            <article><span>已发现报告</span><strong id="reportCount">—</strong><small>含报告与模型卡</small></article>
+            <article><span>完成解析</span><strong id="parsedCount">—</strong><small>可按页码引用</small></article>
+            <article><span>最近扫描</span><strong id="lastScanTime">—</strong><small id="lastScanStatus">等待首次运行</small></article>
+          </div>
+          <div class="monitor-grid">
+            <section class="monitor-panel">
+              <div class="monitor-panel-title"><div><span class="eyebrow">SOURCE REGISTRY</span><h2>官方入口</h2></div><small>每小时自动检查</small></div>
+              <div class="source-table" id="sourceMonitorTable"></div>
+            </section>
+            <section class="monitor-panel">
+              <div class="monitor-panel-title"><div><span class="eyebrow">RECENTLY DISCOVERED</span><h2>最新发现</h2></div><small>原文优先</small></div>
+              <div class="report-table" id="recentReportTable"></div>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="drawer-backdrop" id="drawerBackdrop"></div>
+    <aside class="concept-drawer" id="conceptDrawer" aria-hidden="true">
+      <button class="drawer-close" id="drawerClose" aria-label="关闭">×</button>
+      <div class="drawer-scroll">
+        <span class="drawer-kicker">30 秒建立直觉</span>
+        <h2 id="conceptTitle">Deliberate Planning</h2>
+        <p class="concept-one-liner" id="conceptOneLiner"></p>
+        <div class="concept-block why-block"><span>为什么需要它？</span><p id="conceptWhy"></p></div>
+        <div class="concept-block analogy-block"><span>一个通俗类比</span><div class="analogy-visual"><div class="analogy-before"><i>→</i><small>以前</small></div><div class="analogy-bridge">VS</div><div class="analogy-after"><i>⌘</i><small>现在</small></div></div><p id="conceptAnalogy"></p></div>
+        <div class="concept-block"><span>它如何工作</span><div class="flow" id="conceptFlow"></div></div>
+        <div class="concept-block impact-block"><span>对产品意味着什么</span><p id="conceptImpact"></p></div>
+        <button class="report-link" data-view="report">在 Tech Report 中查看原文 <span>→</span></button>
+      </div>
+    </aside>
+
+    <div class="search-overlay" id="searchOverlay" aria-hidden="true">
+      <div class="search-dialog">
+        <div class="search-input-wrap"><span>⌕</span><input id="searchInput" placeholder="搜索模型、概念或报告内容…" /><kbd>ESC</kbd></div>
+        <p>试试搜索 <button data-search="planning">Planning</button> <button data-search="memory">Working Memory</button> <button data-search="safety">Safety</button></p>
+        <div class="search-result" id="searchResult"><span>A1</span><div><strong>Aster 1</strong><small>模型发布 · 4 个核心变化</small></div><b>→</b></div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
