@@ -7,77 +7,113 @@
     <title>FrontierLens · AI Frontier Intelligence Platform</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,600&family=DM+Sans:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css?v=20260721-2" />
   </head>
   <body>
     <div class="app-shell">
       <aside class="sidebar">
-        <a class="brand" href="#" aria-label="FrontierLens 首页">
+        <a class="brand" href="#" data-view="feed" aria-label="FrontierLens 首页">
           <span class="brand-mark">F</span>
           <span>FrontierLens</span>
-          <em>demo</em>
         </a>
-        <p class="brand-tagline">See what changed.<br /><span>Understand why it matters.</span></p>
+        <p class="brand-tagline"><small>AI FRONTIER INTELLIGENCE</small><strong>See what changed.</strong><span>Understand why it matters.</span></p>
 
-        <nav class="primary-nav" aria-label="主导航">
-          <button class="nav-item active" data-view="brief">
-            <span class="nav-icon">⌁</span><span>发布速览</span>
-          </button>
-          <button class="nav-item" data-view="report">
-            <span class="nav-icon">▤</span><span>Tech Report</span>
-          </button>
-          <button class="nav-item" data-view="sources">
-            <span class="nav-icon">◫</span><span>全部来源</span>
-          </button>
-          <button class="nav-item" data-view="monitor">
-            <span class="nav-icon">◉</span><span>来源监控</span>
-          </button>
+        <nav class="primary-nav global-nav" aria-label="全局导航">
+          <button class="nav-item active" data-view="feed"><span class="nav-icon">◉</span><span>发布简报</span></button>
+          <button class="nav-item" id="openTrackingSettings"><span class="nav-icon">◎</span><span>追踪设置</span><small id="trackingSummary">1 个模型 · 5 类来源</small></button>
+          <button class="nav-item" data-view="monitor"><span class="nav-icon">◫</span><span>官方来源</span></button>
         </nav>
 
-        <div class="sidebar-section">
-          <p class="eyebrow">最近发布</p>
-          <button class="model-row selected">
-            <span class="model-logo violet">A</span>
-            <span><strong>Aster 1</strong><small>今天更新</small></span>
-            <i></i>
-          </button>
-          <button class="model-row muted-model" title="Demo 中暂未开放">
-            <span class="model-logo dark">N</span>
-            <span><strong>Nova 3.2</strong><small>3 天前</small></span>
-          </button>
-          <button class="model-row muted-model" title="Demo 中暂未开放">
-            <span class="model-logo warm">S</span>
-            <span><strong>Solace R2</strong><small>上周</small></span>
-          </button>
-        </div>
+        <section class="sidebar-section model-workspace-section" aria-label="模型工作区">
+          <div class="sidebar-section-heading"><p class="eyebrow">MODEL WORKSPACES</p><span>按模型家族组织</span></div>
+          <div class="sidebar-workspace-list" id="sidebarModelWorkspaces"><p class="sidebar-empty">正在读取你的追踪…</p></div>
+        </section>
 
-        <div class="sidebar-footer">
-          <div class="progress-ring" aria-label="今日阅读进度 68%"><span>68</span></div>
-          <div><strong>今日认知进度</strong><small>还需约 5 分钟</small></div>
-        </div>
+        <button class="sidebar-footer system-status" data-view="monitor">
+          <span class="system-pulse"></span>
+          <span><strong>官方来源自动更新</strong><small>查看采集状态与记录 →</small></span>
+        </button>
       </aside>
 
       <main class="main">
         <header class="topbar">
           <button class="mobile-menu" aria-label="打开菜单">☰</button>
-          <div class="breadcrumb"><span>模型发布</span><b>/</b><strong>Aster 1</strong></div>
+          <div class="breadcrumb"><span>我的追踪</span><b>/</b><strong>为你筛选</strong></div>
           <div class="top-actions">
-            <button class="icon-button" id="searchButton" aria-label="搜索">⌕</button>
-            <button class="avatar" aria-label="个人中心">J</button>
+            <span class="evidence-badge"><i>✓</i> 证据优先 · 官方来源</span>
           </div>
         </header>
 
-        <section class="view active" id="brief-view">
-          <div class="hero">
+        <nav class="release-context-bar" id="releaseContextBar" aria-label="当前发布工作区" hidden>
+          <button class="release-context-identity" data-view="brief">
+            <span class="release-context-logo" id="releaseContextLogo">Q3</span>
+            <span><small id="releaseContextFamily">QWEN · RELEASE</small><strong id="releaseContextTitle">Qwen3</strong></span>
+          </button>
+          <div class="release-context-tabs">
+            <button class="active" data-view="brief">发布速览</button>
+            <button data-view="report" id="releaseReportTab">Tech Report <b id="releaseReportCount">1</b></button>
+            <button data-view="sources">证据与来源 <b id="releaseEvidenceCount">4</b></button>
+          </div>
+          <span class="release-context-note">一个发布，多份证据</span>
+        </nav>
+
+        <section class="view feed-view active" id="feed-view">
+          <div class="feed-header">
+            <div>
+              <span class="eyebrow">FRONTIER BRIEFING · FOR AI BUILDERS</span>
+              <h1>See what changed.<br /><em>Understand why it matters.</em></h1>
+              <p class="feed-intro">把快速发生的模型进展，转化为可以用于产品判断的技术认知。</p>
+              <p class="feed-personalization" id="feedPreferenceSummary">正在读取你的追踪偏好…</p>
+            </div>
+            <button class="secondary-button feed-preference-button" data-open-tracking><span>调整追踪</span><i>↗</i></button>
+          </div>
+          <div class="feed-signal">
+            <span class="status-dot"></span>
+            <p><strong>你的每日前沿简报</strong><small>聚合官方证据，只保留与你关注的模型和产品方向有关的变化。</small></p>
+          </div>
+          <div class="feed-toolbar" role="search">
+            <label class="feed-search"><span>⌕</span><input id="feedSearchInput" type="search" placeholder="搜索模型、报告或厂商" autocomplete="off" /></label>
+            <div class="feed-filters" role="group" aria-label="筛选数据源">
+              <button class="active" data-feed-filter="all">全部</button>
+              <button data-feed-filter="tech-report">Tech Report</button>
+              <button data-feed-filter="model-card">Model Card</button>
+              <button data-feed-filter="safety-report">Safety Report</button>
+              <button data-feed-filter="github">GitHub</button>
+            </div>
+            <span class="feed-result-count" id="feedResultCount">—</span>
+            <div class="feed-model-filter-row">
+              <span class="feed-filter-label">模型家族</span>
+              <div class="feed-model-filters" role="group" aria-label="筛选模型家族">
+                <button class="active" data-feed-model="all">全部模型</button>
+                <button data-feed-model="gpt"><img src="assets/logos/openai.svg" alt="" />GPT</button>
+                <button data-feed-model="claude"><img src="assets/logos/anthropic.svg" alt="" />Claude</button>
+                <button data-feed-model="gemini"><img src="assets/logos/gemini.svg" alt="" />Gemini</button>
+                <button data-feed-model="qwen"><img src="assets/logos/alibaba-cloud.svg" alt="" />Qwen</button>
+                <button data-feed-model="deepseek"><img src="assets/logos/deepseek.svg" alt="" />DeepSeek</button>
+                <button data-feed-model="kimi"><img src="assets/logos/moonshot.svg" alt="" />Kimi</button>
+                <button data-feed-model="seed"><span class="filter-model-letter seed">S</span>Seed</button>
+                <button data-feed-model="glm"><span class="filter-model-letter glm">G</span>GLM</button>
+                <button data-feed-model="minimax"><span class="filter-model-letter minimax">M</span>MiniMax</button>
+              </div>
+            </div>
+          </div>
+          <div class="personalized-feed" id="personalizedFeed">
+            <div class="feed-loading">正在生成你的发布 Feed…</div>
+          </div>
+        </section>
+
+        <section class="view" id="brief-view">
+          <div class="generic-release-brief" id="genericReleaseBrief" hidden></div>
+          <div class="hero qwen-release-content">
             <div class="hero-copy">
-              <div class="status-line"><span class="status-dot"></span> FrontierLens Brief · 今日发布 · 演示数据</div>
-              <h1>Aster 1</h1>
-              <p class="hero-lede">一次面向长流程 Agent 的系统升级：更稳定地规划、调用工具，并在失败后继续完成任务。</p>
+              <div class="status-line"><span class="status-dot"></span> FrontierLens Brief · 官方 Tech Report · 真实数据</div>
+              <h1>Qwen3</h1>
+              <p class="hero-lede">把复杂推理与快速回答统一在同一个模型中，并同时推进 MoE、推理预算控制和多语言能力。</p>
               <div class="hero-meta">
-                <span><b>12 min</b> 建议阅读</span>
+                <span><b>15 min</b> 建议阅读</span>
                 <span><b>4</b> 个核心变化</span>
-                <span><b>5</b> 类官方来源</span>
+                <span><b>35</b> 页官方报告</span>
               </div>
               <div class="hero-actions">
                 <button class="primary-button" data-jump="changes">开始 15 分钟速览 <span>→</span></button>
@@ -89,15 +125,31 @@
               <div class="signal-visual" aria-label="创新程度高，产品影响高">
                 <span class="orbit orbit-one"></span>
                 <span class="orbit orbit-two"></span>
-                <span class="signal-core">A1</span>
+                <span class="signal-core">Q3</span>
                 <i class="spark s1"></i><i class="spark s2"></i><i class="spark s3"></i>
               </div>
-              <p>不是参数规模竞赛，而是把模型从“会回答”推向“能完成”。</p>
-              <div class="signal-tags"><span>Agent</span><span>Tool Use</span><span>Reliability</span></div>
+              <p>核心不是单一能力刷新，而是让“思考”与“不思考”成为可切换、可控制的一套统一体验。</p>
+              <div class="signal-tags"><span>Hybrid Reasoning</span><span>MoE</span><span>119 Languages</span></div>
             </div>
           </div>
 
-          <div class="content-grid" id="changes">
+          <div class="journey-bar qwen-release-content" aria-label="15 分钟理解路径">
+            <button data-jump="brief-view"><span>01</span><div><small>1 分钟</small><strong>判断是否值得关注</strong></div></button>
+            <i>→</i>
+            <button data-jump="changes"><span>02</span><div><small>10 分钟</small><strong>理解四个核心变化</strong></div></button>
+            <i>→</i>
+            <button data-view="report"><span>03</span><div><small>按需深入</small><strong>回到官方原文核对</strong></div></button>
+          </div>
+
+          <section class="release-variants qwen-release-content" id="releaseVariants">
+            <div class="release-variants-heading"><div><span class="eyebrow">MODEL SELECTION</span><h2>同一次发布，八种产品选型</h2></div><p>变体不是八份报告。它们共享 Qwen3 的发布背景与技术证据，只在容量、成本和部署方式上不同。</p></div>
+            <div class="release-variant-groups">
+              <div class="release-variant-group"><span><strong>Dense</strong><small>全参数激活 · 6 models</small></span><div class="variant-chips"><button data-variant="0.6b">0.6B</button><button data-variant="1.7b">1.7B</button><button data-variant="4b">4B</button><button data-variant="8b">8B</button><button data-variant="14b">14B</button><button data-variant="32b">32B</button></div></div>
+              <div class="release-variant-group moe"><span><strong>MoE</strong><small>稀疏激活 · 2 models</small></span><div class="variant-chips wide"><button data-variant="30b-a3b">30B-A3B</button><button data-variant="235b-a22b">235B-A22B</button></div></div>
+            </div>
+          </section>
+
+          <div class="content-grid qwen-release-content" id="changes">
             <section class="content-column">
               <div class="section-heading">
                 <div><span class="step-number">01</span><h2>这次更新了什么</h2></div>
@@ -105,46 +157,46 @@
               </div>
 
               <div class="change-list">
-                <article class="change-card featured" data-concept="deliberate-planning" tabindex="0">
+                <article class="change-card featured" data-concept="hybrid-reasoning" tabindex="0">
                   <div class="change-index">01</div>
                   <div class="change-content">
                     <div class="change-title-row"><span class="pill violet-pill">核心架构</span><small>点击建立直觉 ↗</small></div>
-                    <h3>Deliberate Planning</h3>
-                    <p>模型会先拆解长任务、识别风险，再决定调用哪些工具，而不是边生成边碰运气。</p>
-                    <div class="impact-line"><span>产品影响</span><strong>更长的 Agent 任务链</strong></div>
+                    <h3>Unified Thinking Modes</h3>
+                    <p>同一个模型同时支持思考模式与非思考模式，复杂问题深入推理，简单问题快速响应。</p>
+                    <div class="impact-line"><span>产品影响</span><strong>一套模型覆盖快答与深度推理</strong></div>
                   </div>
                   <span class="card-arrow">↗</span>
                 </article>
 
-                <article class="change-card" data-concept="tool-recovery" tabindex="0">
+                <article class="change-card" data-concept="moe-architecture" tabindex="0">
                   <div class="change-index">02</div>
                   <div class="change-content">
-                    <div class="change-title-row"><span class="pill blue-pill">可靠性</span><small>点击建立直觉 ↗</small></div>
-                    <h3>Tool Recovery</h3>
-                    <p>工具调用失败后，模型可以理解错误、调整参数并重试，而不是中断整个任务。</p>
-                    <div class="impact-line"><span>产品影响</span><strong>减少人工接管</strong></div>
+                    <div class="change-title-row"><span class="pill blue-pill">模型架构</span><small>点击建立直觉 ↗</small></div>
+                    <h3>Dense + Mixture-of-Experts</h3>
+                    <p>Qwen3 同时提供稠密模型和 MoE 模型，规模覆盖 0.6B 到 235B 参数。</p>
+                    <div class="impact-line"><span>产品影响</span><strong>在能力与推理成本间灵活选型</strong></div>
                   </div>
                   <span class="card-arrow">↗</span>
                 </article>
 
-                <article class="change-card" data-concept="working-memory" tabindex="0">
+                <article class="change-card" data-concept="thinking-budget" tabindex="0">
                   <div class="change-index">03</div>
                   <div class="change-content">
-                    <div class="change-title-row"><span class="pill green-pill">上下文</span><small>点击建立直觉 ↗</small></div>
-                    <h3>Structured Working Memory</h3>
-                    <p>在长任务中持续维护目标、约束与执行状态，减少“看过但忘了”的情况。</p>
-                    <div class="impact-line"><span>产品影响</span><strong>工作流更连贯</strong></div>
+                    <div class="change-title-row"><span class="pill green-pill">推理控制</span><small>点击建立直觉 ↗</small></div>
+                    <h3>Thinking Budget</h3>
+                    <p>用户可以控制推理所使用的计算预算，在效果、延迟与成本之间进行调节。</p>
+                    <div class="impact-line"><span>产品影响</span><strong>让推理深度成为产品参数</strong></div>
                   </div>
                   <span class="card-arrow">↗</span>
                 </article>
 
-                <article class="change-card" data-concept="adaptive-compute" tabindex="0">
+                <article class="change-card" data-concept="multilingual-scale" tabindex="0">
                   <div class="change-index">04</div>
                   <div class="change-content">
-                    <div class="change-title-row"><span class="pill amber-pill">效率</span><small>点击建立直觉 ↗</small></div>
-                    <h3>Adaptive Compute</h3>
-                    <p>简单任务快速作答，复杂任务自动投入更多推理资源，在速度与质量间动态平衡。</p>
-                    <div class="impact-line"><span>产品影响</span><strong>成本更可控</strong></div>
+                    <div class="change-title-row"><span class="pill amber-pill">数据规模</span><small>点击建立直觉 ↗</small></div>
+                    <h3>36T Tokens · 119 Languages</h3>
+                    <p>预训练数据扩展到约 36 万亿 token，并覆盖 119 种语言和方言。</p>
+                    <div class="impact-line"><span>产品影响</span><strong>全球化应用的基础能力更完整</strong></div>
                   </div>
                   <span class="card-arrow">↗</span>
                 </article>
@@ -155,9 +207,9 @@
                   <div><span class="step-number">02</span><h2>为什么重要</h2></div>
                 </div>
                 <div class="impact-grid">
-                  <article><span>对 AI PM</span><h3>可以设计更完整的闭环任务</h3><p>从“给建议”升级到“执行、检查、修正并交付结果”。</p></article>
-                  <article><span>对工程团队</span><h3>异常处理从代码移向模型</h3><p>仍需边界控制，但常见失败不必全部手写兜底。</p></article>
-                  <article><span>对业务负责人</span><h3>关注完成率，而不只是单次准确率</h3><p>Agent 的真实价值开始由端到端结果衡量。</p></article>
+                  <article><span>对 AI PM</span><h3>同一入口可以服务两类任务</h3><p>日常问答走快速模式，复杂分析再开启深度思考，不必让用户理解模型切换。</p></article>
+                  <article><span>对工程团队</span><h3>推理预算进入系统设计</h3><p>需要根据任务价值设置预算、超时和成本边界，而不只是选择一个模型名称。</p></article>
+                  <article><span>对业务负责人</span><h3>模型部署选择更加细分</h3><p>Dense 与 MoE、多种尺寸和 119 种语言覆盖，为不同成本与地域需求提供组合。</p></article>
                 </div>
               </section>
             </section>
@@ -165,84 +217,140 @@
             <aside class="right-rail">
               <div class="rail-card verdict-card">
                 <span class="rail-label">给你的结论</span>
-                <h3>如果你正在做 Agent，值得立刻看。</h3>
-                <p>优先关注规划、工具恢复和任务完成率；多模态能力不是本次重点。</p>
+                <h3>如果你在选择推理模型，值得立刻看。</h3>
+                <p>优先关注思考模式融合、预算控制与 MoE 选型；这是理解 Qwen3 产品形态的关键。</p>
                 <div class="verdict-meter"><span style="width:86%"></span></div>
                 <div class="verdict-scale"><small>可跳过</small><small>强相关</small></div>
               </div>
 
               <div class="rail-card source-preview">
-                <div class="rail-title"><span class="rail-label">证据覆盖</span><button data-view="sources">查看全部</button></div>
+                <div class="rail-title"><span class="rail-label">证据覆盖</span><button data-view="sources">查看全部 →</button></div>
                 <ul>
-                  <li class="primary-source"><span class="source-icon">TR</span><div><strong>Tech Report</strong><small>128 页 · 完整收录</small></div><b>主证据</b></li>
-                  <li><span class="source-icon">BL</span><div><strong>Official Blog</strong><small>产品定位与发布说明</small></div><b>补充</b></li>
-                  <li><span class="source-icon">BM</span><div><strong>Benchmark</strong><small>17 项评测结果</small></div><b>验证</b></li>
-                  <li><span class="source-icon">GH</span><div><strong>GitHub</strong><small>SDK 与示例代码</small></div><b>实现</b></li>
-                  <li><span class="source-icon">SR</span><div><strong>Safety Report</strong><small>风险与限制说明</small></div><b>边界</b></li>
+                  <li class="primary-source"><button class="source-preview-link" data-view="report"><span class="source-icon">TR</span><span><strong>Tech Report</strong><small>35 页 · 原文完整保存</small></span><b>阅读 →</b></button></li>
+                  <li><a class="source-preview-link" href="https://github.com/QwenLM/Qwen3" target="_blank" rel="noopener"><span class="source-icon">GH</span><span><strong>Official GitHub</strong><small>报告、模型与使用说明</small></span><b>打开 ↗</b></a></li>
+                  <li><a class="source-preview-link" href="https://huggingface.co/Qwen" target="_blank" rel="noopener"><span class="source-icon">HF</span><span><strong>Hugging Face</strong><small>官方模型集合</small></span><b>打开 ↗</b></a></li>
+                  <li><a class="source-preview-link" href="https://modelscope.cn/organization/qwen" target="_blank" rel="noopener"><span class="source-icon">MS</span><span><strong>ModelScope</strong><small>官方模型集合</small></span><b>打开 ↗</b></a></li>
                 </ul>
               </div>
 
               <div class="rail-card reading-route">
                 <span class="rail-label">Tech Report 阅读路线</span>
                 <h3>为 AI PM 精选 3 处</h3>
-                <button data-report-section="2"><span>01</span><div><strong>Executive Summary</strong><small>2 min · 第 3–6 页</small></div></button>
-                <button data-report-section="4"><span>02</span><div><strong>Agent Architecture</strong><small>5 min · 第 31–48 页</small></div></button>
-                <button data-report-section="6"><span>03</span><div><strong>Limitations</strong><small>3 min · 第 97–104 页</small></div></button>
+                <button data-report-section="0"><span>01</span><div><strong>Abstract</strong><small>2 min · 第 1 页</small></div></button>
+                <button data-report-section="2"><span>02</span><div><strong>Architecture & Training</strong><small>7 min · 第 3–11 页</small></div></button>
+                <button data-report-section="3"><span>03</span><div><strong>General RL</strong><small>5 min · 第 12–21 页</small></div></button>
+              </div>
+            </aside>
+          </div>
+          <section class="release-knowledge-map" id="releaseKnowledgeMap" aria-live="polite">
+            <div class="knowledge-loading"><span class="eyebrow">TECHNICAL INTUITION MAP</span><p>正在把这次发布连接到官方证据与关键概念…</p></div>
+          </section>
+        </section>
+
+        <section class="view report-view" id="report-view">
+          <div class="report-toolbar">
+            <div><span class="eyebrow">PRIMARY EVIDENCE</span><h1 id="reportDocumentTitle">Qwen3 Technical Report</h1><p id="reportDocumentMeta">正在载入官方原文…</p></div>
+            <div class="report-actions"><button class="secondary-button" id="toggleHighlights">隐藏 AI 辅助</button><a class="primary-button button-link disabled" id="openOriginalPdf" target="_blank" rel="noopener">打开原始 PDF ↗</a></div>
+          </div>
+          <div class="ai-reader-bar">
+            <div class="ai-reader-identity"><span>✦</span><div><strong>AI 辅助阅读</strong><small>原文保持不变，AI 只负责提炼、翻译与解释</small></div></div>
+            <div class="reader-tools" role="group" aria-label="AI 阅读工具">
+              <button id="summaryModeButton">查看本节提炼</button>
+              <button id="toggleKeyPoints">显示重点</button>
+              <button id="toggleTranslation">中文辅助译读</button>
+              <span class="font-controls" aria-label="正文字号">
+                <button id="decreaseFont" type="button" aria-label="减小正文字号">A−</button>
+                <b id="fontSizeLabel">标准</b>
+                <button id="increaseFont" type="button" aria-label="增大正文字号">A+</button>
+              </span>
+            </div>
+          </div>
+          <div class="reader-layout">
+            <aside class="report-toc">
+              <span class="eyebrow">目录</span>
+              <div id="reportTocItems"><button class="active"><i>··</i>正在载入</button></div>
+              <div class="toc-progress"><span>阅读进度</span><strong>18%</strong><div><i></i></div></div>
+            </aside>
+            <article class="paper-page">
+              <div class="paper-kicker" id="paperKicker">QWEN TEAM · OFFICIAL TECHNICAL REPORT</div>
+              <h1 id="paperTitle">Abstract</h1>
+              <p class="paper-authors" id="paperAuthors">Qwen Team · 2025-05-14</p>
+              <div id="paperContent"></div>
+            </article>
+            <aside class="atlas-notes">
+              <div class="ai-note-heading"><span class="eyebrow">AI READING COPILOT</span><b>基于本节原文</b></div>
+              <div class="note-card"><span>这一节在回答</span><h3 id="noteQuestion">Qwen3 最核心的变化是什么？</h3><p id="noteAnswer">把思考与非思考模式统一在同一个模型框架，并允许控制推理预算。</p></div>
+              <div class="note-card key-points-card"><span>三点读懂</span><ul id="noteKeyPoints"></ul></div>
+              <div class="note-card translation-card" id="translationCard" hidden><span>中文辅助译读</span><p id="noteTranslation"></p><small>AI 辅助内容，仅用于理解；技术结论请核对左侧原文。</small></div>
+              <div class="note-card cited"><span>阅读提示</span><p id="noteTip">先看摘要建立全局判断，再按角色进入重点章节。</p><button id="locateOriginalPage">定位原文 ↗</button></div>
+              <div class="selection-hint"><i>划</i><p><strong>划词或点击紫色术语</strong><small>查看名词解释与上下文含义</small></p></div>
+              <div class="selection-assistant" id="selectionAssistant" aria-hidden="true">
+                <button id="selectionAssistantClose" aria-label="关闭划词解释">×</button>
+                <span>AI 名词解释</span>
+                <h3 id="selectionTerm">Mixture-of-Experts</h3>
+                <p id="selectionDefinition"></p>
+                <small>解释基于当前报告语境</small>
+                <button type="button" id="openSelectionConcept" hidden>打开认知卡片 →</button>
               </div>
             </aside>
           </div>
         </section>
 
-        <section class="view report-view" id="report-view">
-          <div class="report-toolbar">
-            <div><span class="eyebrow">PRIMARY EVIDENCE</span><h1>Aster 1 Technical Report</h1><p>完整文献阅读 · 128 页 · Demo 节选</p></div>
-            <div class="report-actions"><button class="secondary-button" id="toggleHighlights">隐藏 FrontierLens 解读</button><button class="primary-button">打开原始 PDF ↗</button></div>
-          </div>
-          <div class="reader-layout">
-            <aside class="report-toc">
-              <span class="eyebrow">目录</span>
-              <button class="active" data-section="1"><i>01</i>Abstract</button>
-              <button data-section="2"><i>02</i>Executive Summary</button>
-              <button data-section="3"><i>03</i>Model Overview</button>
-              <button data-section="4"><i>04</i>Agent Architecture</button>
-              <button data-section="5"><i>05</i>Evaluation</button>
-              <button data-section="6"><i>06</i>Limitations</button>
-              <div class="toc-progress"><span>阅读进度</span><strong>18%</strong><div><i></i></div></div>
-            </aside>
-            <article class="paper-page">
-              <div class="paper-kicker">ASTER RESEARCH · TECHNICAL REPORT 2026</div>
-              <h1 id="paperTitle">Abstract</h1>
-              <p class="paper-authors">Aster Research Team</p>
-              <div id="paperContent"></div>
-            </article>
-            <aside class="atlas-notes">
-              <span class="eyebrow">FRONTIERLENS 解读</span>
-              <div class="note-card"><span>这一节在回答</span><h3 id="noteQuestion">这个模型最核心的变化是什么？</h3><p id="noteAnswer">Aster 1 的重点不是增加知识，而是提高长任务中的规划与恢复能力。</p></div>
-              <div class="note-card cited"><span>阅读提示</span><p id="noteTip">先看任务完成率，再看单步准确率；这是理解本报告的关键。</p><button>定位原文 ↗</button></div>
-            </aside>
-          </div>
-        </section>
-
         <section class="view sources-view" id="sources-view">
-          <div class="sources-header"><span class="eyebrow">EVIDENCE LIBRARY</span><h1>围绕 Aster 1 的全部来源</h1><p>Tech Report 保持第一优先级和完整性；其余来源回答不同问题，而不是取代原文。</p></div>
+          <div class="generic-release-sources" id="genericReleaseSources" hidden></div>
+          <div class="qwen-release-content">
+          <div class="sources-header"><span class="eyebrow">QWEN3 · EVIDENCE WORKSPACE</span><h1>先问问题，再选择证据</h1><p>来源不是五个彼此割裂的入口。FrontierLens 根据用户问题选择最合适的官方证据，同时保持 Tech Report 第一优先级与完整性。</p></div>
+
+          <div class="evidence-decision-grid">
+            <section class="question-router">
+              <div class="question-router-head"><div><span class="eyebrow">QUESTION FIRST</span><h2>你现在想确认什么？</h2></div><small>点击问题，自动切换证据优先级</small></div>
+              <div class="question-tabs" role="group" aria-label="选择问题">
+                <button class="active" data-evidence-question="why">为什么这么做？</button>
+                <button data-evidence-question="implementation">怎么实现？</button>
+                <button data-evidence-question="performance">效果如何？</button>
+                <button data-evidence-question="safety">安全吗？</button>
+              </div>
+              <article class="evidence-route-answer">
+                <span id="evidenceQuestionLabel">为什么这么做？</span>
+                <h3 id="evidenceRouteTitle">先读 Tech Report，再用 Official Blog 补充设计动机</h3>
+                <div class="route-evidence-list" id="routeEvidenceList"></div>
+                <p id="evidenceRouteNote">论文负责方法与实验，官方博客负责解释发布背景；两者不是同一权重。</p>
+              </article>
+            </section>
+
+            <aside class="evidence-pyramid-card">
+              <span class="eyebrow">EVIDENCE PYRAMID</span>
+              <h2>事实来自证据，理解由 AI 生成</h2>
+              <div class="evidence-pyramid" aria-label="证据优先级金字塔">
+                <div class="pyramid-understanding"><strong>用户理解</strong><small>解释 · 类比 · 产品影响</small></div>
+                <div class="pyramid-fusion"><strong>多源综合</strong><small>按问题选择，而非平均引用</small></div>
+                <div class="pyramid-sources"><span>Tech Report <b>1.0</b></span><span>Blog / Benchmark / Safety <b>0.8</b></span><span>GitHub <b>0.7</b></span></div>
+              </div>
+              <p>权重表示检索优先级，不代表“真实性评分”。任何生成结论都必须能回到原始官方来源。</p>
+            </aside>
+          </div>
+
+          <div class="source-section-title"><div><span class="eyebrow">SOURCE PRIORITY</span><h2>Qwen3 官方证据层</h2></div><p>Source ≠ Experience：来源可以很多，用户体验始终在同一个模型工作区内。</p></div>
           <div class="source-priority">
             <article class="source-hero-card">
               <div class="source-rank">01</div><span class="source-type">PRIMARY EVIDENCE</span><h2>Technical Report</h2><p>架构、训练方法、实验设计与局限的完整原始依据。</p>
-              <div class="source-stats"><span><b>128</b> 页</span><span><b>42</b> 图表</span><span><b>186</b> 引用</span></div>
+              <div class="source-stats"><span><b>35</b> 页</span><span><b>6</b> 个结构化章节</span><span><b>完整</b> 原始 PDF</span></div>
               <button class="primary-button" data-view="report">进入完整阅读</button>
             </article>
             <div class="source-grid">
-              <article><div><span class="source-rank">02</span><span class="pill blue-pill">为什么</span></div><h3>Official Blog</h3><p>理解发布背景、产品定位，以及团队为何选择这条技术路线。</p><button>查看 3 篇来源 ↗</button></article>
-              <article><div><span class="source-rank">03</span><span class="pill green-pill">效果</span></div><h3>Benchmark</h3><p>验证能力提升是否成立，并揭示评测口径与适用边界。</p><button>查看 17 项评测 ↗</button></article>
-              <article><div><span class="source-rank">04</span><span class="pill violet-pill">实现</span></div><h3>GitHub</h3><p>查看 SDK、工具调用协议、示例代码与可复现实现。</p><button>查看 4 个仓库 ↗</button></article>
-              <article><div><span class="source-rank">05</span><span class="pill amber-pill">边界</span></div><h3>Safety Report</h3><p>理解已知风险、红队测试、部署限制与仍未解决的问题。</p><button>查看完整报告 ↗</button></article>
+              <article class="source-placeholder"><div><span class="source-rank">02</span><span class="pill violet-pill">动机 · 0.8</span></div><h3>Official Blog</h3><p>回答为什么发布、为何采用这种设计，以及官方希望解决的产品问题。</p><span class="source-unavailable">独立官方入口监控中</span></article>
+              <article><div><span class="source-rank">03</span><span class="pill green-pill">效果 · 0.8</span></div><h3>Benchmark</h3><p>用于验证能力提升是否成立；当前优先引用 Tech Report 内的完整评测与条件。</p><button class="source-inline-button" data-view="report">查看报告内评测 →</button></article>
+              <article><div><span class="source-rank">04</span><span class="pill blue-pill">实现 · 0.7</span></div><h3>Official GitHub</h3><p>查看官方模型说明、部署方式、推理模式切换与开源资源。</p><a href="https://github.com/QwenLM/Qwen3" target="_blank" rel="noopener">打开官方仓库 ↗</a></article>
+              <article class="source-placeholder"><div><span class="source-rank">05</span><span class="pill amber-pill">安全 · 0.8</span></div><h3>Safety Report</h3><p>用于核对能力限制、安全评估和风险边界；未发现独立官方报告时不以社区材料替代。</p><span class="source-unavailable">官方来源监控中</span></article>
             </div>
+          </div>
+          <div class="secondary-sources"><span>模型分发入口（辅助）</span><a href="https://huggingface.co/Qwen" target="_blank" rel="noopener">Hugging Face ↗</a><a href="https://modelscope.cn/organization/qwen" target="_blank" rel="noopener">ModelScope ↗</a></div>
           </div>
         </section>
 
         <section class="view monitor-view" id="monitor-view">
           <div class="monitor-header">
-            <div><span class="eyebrow">OFFICIAL SOURCE MONITOR</span><h1>官方来源监控</h1><p>按小时检查厂商官方入口，自动发现、保存并解析新的 Tech Report。</p></div>
+            <div><span class="eyebrow">OFFICIAL SOURCE MONITOR</span><h1>官方来源监控</h1><p>每 5 分钟检查厂商官方入口，自动发现、保存并解析新的 Tech Report。</p></div>
             <button class="primary-button" id="scanNowButton">立即扫描 <span>↻</span></button>
           </div>
           <div class="monitor-notice" id="monitorNotice">
@@ -256,7 +364,7 @@
           </div>
           <div class="monitor-grid">
             <section class="monitor-panel">
-              <div class="monitor-panel-title"><div><span class="eyebrow">SOURCE REGISTRY</span><h2>官方入口</h2></div><small>每小时自动检查</small></div>
+              <div class="monitor-panel-title"><div><span class="eyebrow">SOURCE REGISTRY</span><h2>官方入口</h2></div><small>每 5 分钟自动检查</small></div>
               <div class="source-table" id="sourceMonitorTable"></div>
             </section>
             <section class="monitor-panel">
@@ -269,28 +377,93 @@
     </div>
 
     <div class="drawer-backdrop" id="drawerBackdrop"></div>
+    <aside class="variant-inspector" id="variantInspector" aria-hidden="true" aria-labelledby="variantTitle">
+      <button class="drawer-close" id="variantInspectorClose" aria-label="关闭模型变体详情">×</button>
+      <div class="variant-inspector-scroll">
+        <span class="drawer-kicker">QWEN3 · MODEL VARIANT</span>
+        <div class="variant-inspector-title"><div><h2 id="variantTitle">Qwen3 8B</h2><p id="variantArchitecture">Dense · 全参数激活</p></div><span id="variantScaleBadge">通用型</span></div>
+        <p class="variant-summary" id="variantSummary"></p>
+        <div class="variant-metrics">
+          <article><span>总参数</span><strong id="variantTotalParams">8B</strong></article>
+          <article><span>单次激活</span><strong id="variantActiveParams">8B</strong></article>
+          <article><span>部署门槛</span><strong id="variantDeployment">中</strong></article>
+        </div>
+        <section class="variant-decision-card"><span>对产品经理意味着什么</span><h3 id="variantDecision"></h3><p id="variantTradeoff"></p></section>
+        <section class="variant-use-cases"><span>更适合</span><div id="variantUseCases"></div></section>
+        <div class="variant-actions">
+          <button class="primary-button" id="variantArchitectureAction">理解它的架构 <span>→</span></button>
+          <a href="https://huggingface.co/Qwen" target="_blank" rel="noopener">查看官方模型集合 ↗</a>
+        </div>
+        <p class="variant-evidence-note">型号信息属于同一次 Qwen3 发布。切换变体不会创建新的 Report；技术结论仍回到同一份官方报告核对。</p>
+      </div>
+    </aside>
     <aside class="concept-drawer" id="conceptDrawer" aria-hidden="true">
       <button class="drawer-close" id="drawerClose" aria-label="关闭">×</button>
       <div class="drawer-scroll">
         <span class="drawer-kicker">30 秒建立直觉</span>
-        <h2 id="conceptTitle">Deliberate Planning</h2>
+        <h2 id="conceptTitle">Unified Thinking Modes</h2>
         <p class="concept-one-liner" id="conceptOneLiner"></p>
         <div class="concept-block why-block"><span>为什么需要它？</span><p id="conceptWhy"></p></div>
         <div class="concept-block analogy-block"><span>一个通俗类比</span><div class="analogy-visual"><div class="analogy-before"><i>→</i><small>以前</small></div><div class="analogy-bridge">VS</div><div class="analogy-after"><i>⌘</i><small>现在</small></div></div><p id="conceptAnalogy"></p></div>
         <div class="concept-block"><span>它如何工作</span><div class="flow" id="conceptFlow"></div></div>
+        <div class="concept-block"><span>理解它之前</span><div class="prerequisite-list" id="conceptPrerequisites"></div></div>
+        <div class="concept-block relation-block"><span>它和哪些技术有关</span><div class="concept-relation-map"><strong id="relationCenter">MoE</strong><div id="conceptRelations"></div></div></div>
+        <div class="concept-block"><span>技术如何演化</span><div class="evolution-line" id="conceptEvolution"></div></div>
+        <div class="concept-block compare-block"><span id="conceptCompareQuestion">为什么不用 Dense？</span><p id="conceptComparison"></p></div>
         <div class="concept-block impact-block"><span>对产品意味着什么</span><p id="conceptImpact"></p></div>
-        <button class="report-link" data-view="report">在 Tech Report 中查看原文 <span>→</span></button>
+        <div class="concept-evidence-block" id="conceptEvidenceBlock"></div>
+        <button class="report-link" id="conceptEvidenceAction">在 Tech Report 中查看原文 <span>→</span></button>
       </div>
     </aside>
 
-    <div class="search-overlay" id="searchOverlay" aria-hidden="true">
-      <div class="search-dialog">
-        <div class="search-input-wrap"><span>⌕</span><input id="searchInput" placeholder="搜索模型、概念或报告内容…" /><kbd>ESC</kbd></div>
-        <p>试试搜索 <button data-search="planning">Planning</button> <button data-search="memory">Working Memory</button> <button data-search="safety">Safety</button></p>
-        <div class="search-result" id="searchResult"><span>A1</span><div><strong>Aster 1</strong><small>模型发布 · 4 个核心变化</small></div><b>→</b></div>
-      </div>
+    <div class="tracking-modal-backdrop" id="trackingModal" aria-hidden="true">
+      <section class="tracking-modal" role="dialog" aria-modal="true" aria-labelledby="trackingModalTitle">
+        <button class="tracking-modal-close" id="closeTrackingSettings" aria-label="关闭追踪设置">×</button>
+        <span class="tracking-modal-kicker">WELCOME TO FRONTIERLENS</span>
+        <h2 id="trackingModalTitle">选择你想追踪的 AI 前沿</h2>
+        <p>登录后只展示与你有关的模型发布。FrontierLens 会监控对应的官方来源；发现新内容后进入同一个模型工作区。</p>
+
+        <div class="tracking-section">
+          <div class="tracking-section-head"><div><span>01</span><h3>追踪哪些模型家族？</h3></div><small>至少选择一个</small></div>
+          <div class="tracking-option-grid model-options">
+            <label><input type="checkbox" name="tracked-model" value="qwen" checked /><span class="tracking-logo violet">Q</span><span><strong>Qwen</strong><small>Alibaba</small></span></label>
+            <label><input type="checkbox" name="tracked-model" value="gpt" /><span class="tracking-logo dark">O</span><span><strong>GPT</strong><small>OpenAI</small></span></label>
+            <label><input type="checkbox" name="tracked-model" value="claude" /><span class="tracking-logo warm">A</span><span><strong>Claude</strong><small>Anthropic</small></span></label>
+            <label><input type="checkbox" name="tracked-model" value="gemini" /><span class="tracking-logo blue">G</span><span><strong>Gemini</strong><small>Google</small></span></label>
+            <label><input type="checkbox" name="tracked-model" value="deepseek" /><span class="tracking-logo navy">D</span><span><strong>DeepSeek</strong><small>DeepSeek</small></span></label>
+            <label><input type="checkbox" name="tracked-model" value="kimi" /><span class="tracking-logo silver">K</span><span><strong>Kimi</strong><small>Moonshot AI</small></span></label>
+            <label><input type="checkbox" name="tracked-model" value="seed" /><span class="tracking-logo seed">S</span><span><strong>Seed</strong><small>ByteDance</small></span></label>
+            <label><input type="checkbox" name="tracked-model" value="glm" /><span class="tracking-logo glm">G</span><span><strong>GLM</strong><small>Z.ai</small></span></label>
+            <label><input type="checkbox" name="tracked-model" value="minimax" /><span class="tracking-logo minimax">M</span><span><strong>MiniMax</strong><small>MiniMax</small></span></label>
+          </div>
+        </div>
+
+        <div class="tracking-section">
+          <div class="tracking-section-head"><div><span>02</span><h3>追踪哪些官方数据源？</h3></div><small>Tech Report 推荐优先</small></div>
+          <div class="tracking-option-grid source-options">
+            <label><input type="checkbox" name="tracked-source" value="tech-report" checked /><span><strong>Tech Report</strong><small>架构、训练与完整实验</small></span><b>推荐</b></label>
+            <label><input type="checkbox" name="tracked-source" value="official-blog" checked /><span><strong>Official Blog</strong><small>发布背景与设计动机</small></span></label>
+            <label><input type="checkbox" name="tracked-source" value="benchmark" checked /><span><strong>Benchmark</strong><small>能力结果与评测条件</small></span></label>
+            <label><input type="checkbox" name="tracked-source" value="github" checked /><span><strong>GitHub</strong><small>实现、权重与部署说明</small></span></label>
+            <label><input type="checkbox" name="tracked-source" value="safety-report" checked /><span><strong>Safety Report</strong><small>能力边界与风险评估</small></span></label>
+          </div>
+          <div class="custom-tracking-list" id="customSourceList"></div>
+          <button class="custom-add-button" id="toggleCustomSource" type="button">＋ 添加官方来源</button>
+          <div class="custom-add-form source-form" id="customSourceForm" hidden>
+            <input id="customSourceName" maxlength="80" placeholder="来源名称，例如 MiniMax Research" />
+            <input id="customSourceUrl" type="url" maxlength="500" placeholder="https://官方地址" />
+            <button type="button" id="addCustomSource">添加</button>
+          </div>
+        </div>
+
+        <div class="tracking-modal-footer">
+          <p id="trackingValidation" role="alert"></p>
+          <button class="secondary-button" id="skipTrackingSettings">稍后设置</button>
+          <button class="primary-button" id="saveTrackingSettings">开始追踪 <span>→</span></button>
+        </div>
+      </section>
     </div>
 
-    <script src="app.js"></script>
+    <script src="app.js?v=20260721-2"></script>
   </body>
 </html>

@@ -1,0 +1,21 @@
+services:
+  web:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    command: ["python", "run.py", "serve", "--host", "0.0.0.0", "--port", "4173", "--interval", "0"]
+    ports:
+      - "4173:4173"
+    volumes:
+      - frontierlens-data:/app/data
+
+  worker:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    command: ["python", "run.py", "worker", "--interval", "3600", "--max-downloads", "10"]
+    volumes:
+      - frontierlens-data:/app/data
+
+volumes:
+  frontierlens-data:

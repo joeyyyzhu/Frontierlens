@@ -4,10 +4,34 @@
     {
       "id": "openai-publications",
       "provider": "OpenAI",
-      "name": "OpenAI Research Publications",
-      "index_url": "https://openai.com/sitemap.xml/publication/",
+      "name": "OpenAI Model Releases",
+      "index_url": "https://openai.com/sitemap.xml/release/",
       "allowed_domains": ["openai.com", "cdn.openai.com"],
+      "allowed_path_prefixes": ["/index/", "/research/", "/safety/"],
       "priority": 10,
+      "enabled": true,
+      "seed_documents": [
+        {"title": "GPT-5.6 Official Launch", "url": "https://openai.com/index/gpt-5-6/", "report_type": "official_blog", "published_at": "2026-07-09T00:00:00+00:00"}
+      ]
+    },
+    {
+      "id": "openai-safety",
+      "provider": "OpenAI",
+      "name": "OpenAI Safety & System Cards",
+      "index_url": "https://openai.com/sitemap.xml/safety/",
+      "allowed_domains": ["openai.com", "cdn.openai.com"],
+      "allowed_path_prefixes": ["/index/", "/safety/"],
+      "priority": 11,
+      "enabled": true
+    },
+    {
+      "id": "openai-research",
+      "provider": "OpenAI",
+      "name": "OpenAI Research",
+      "index_url": "https://openai.com/sitemap.xml/research/",
+      "allowed_domains": ["openai.com", "cdn.openai.com"],
+      "allowed_path_prefixes": ["/index/", "/research/"],
+      "priority": 12,
       "enabled": true
     },
     {
@@ -17,7 +41,24 @@
       "index_url": "https://www.anthropic.com/system-cards",
       "allowed_domains": ["anthropic.com", "assets.anthropic.com", "www-cdn.anthropic.com"],
       "priority": 20,
-      "enabled": true
+      "enabled": true,
+      "seed_documents": [
+        {"title": "Claude Sonnet 5 System Card", "url": "https://www-cdn.anthropic.com/9e6a1044980d8c4ed85669faf9c2a8342e2e9f1e/Claude%20Sonnet%205%20System%20Card.pdf", "report_type": "safety_report", "published_at": "2026-06-30T00:00:00+00:00"}
+      ]
+    },
+    {
+      "id": "anthropic-news",
+      "provider": "Anthropic",
+      "name": "Anthropic Model News",
+      "index_url": "https://www.anthropic.com/news",
+      "allowed_domains": ["anthropic.com", "www.anthropic.com", "assets.anthropic.com", "www-cdn.anthropic.com"],
+      "follow_path_patterns": ["^/news/[A-Za-z0-9._-]+$"],
+      "max_follow_pages": 20,
+      "priority": 21,
+      "enabled": true,
+      "seed_documents": [
+        {"title": "Claude Sonnet 5 Official Launch", "url": "https://www.anthropic.com/news/claude-sonnet-5", "report_type": "official_blog", "published_at": "2026-06-30T00:00:00+00:00"}
+      ]
     },
     {
       "id": "deepmind-model-cards",
@@ -29,14 +70,306 @@
       "enabled": true
     },
     {
+      "id": "deepmind-blog",
+      "provider": "Google DeepMind",
+      "name": "Google DeepMind Model Blog",
+      "index_url": "https://deepmind.google/discover/blog/",
+      "allowed_domains": ["deepmind.google", "storage.googleapis.com"],
+      "follow_path_patterns": ["^/discover/blog/[A-Za-z0-9._-]+/$"],
+      "max_follow_pages": 20,
+      "priority": 31,
+      "enabled": true
+    },
+    {
+      "id": "deepmind-gemini-technical-reports",
+      "provider": "Google DeepMind",
+      "name": "Google DeepMind Gemini Technical Reports",
+      "index_url": "https://deepmind.google/models/gemini/",
+      "allowed_domains": ["deepmind.google", "storage.googleapis.com", "arxiv.org"],
+      "allowed_path_prefixes": ["/gemini/", "/deepmind-media/", "/abs/", "/pdf/"],
+      "priority": 29,
+      "enabled": true,
+      "seed_documents": [
+        {"title": "Gemini 1 Technical Report", "url": "https://deepmind.google/gemini/gemini_1_report.pdf", "report_type": "technical_report", "published_at": "2023-12-06T00:00:00+00:00"},
+        {"title": "Gemini 1.5 Technical Report", "url": "https://storage.googleapis.com/deepmind-media/gemini/gemini_v1_5_report.pdf", "report_type": "technical_report", "published_at": "2024-02-15T00:00:00+00:00"},
+        {"title": "Gemini 2.5 Technical Report", "url": "https://storage.googleapis.com/deepmind-media/gemini/gemini_v2_5_report.pdf", "report_type": "technical_report", "published_at": "2025-06-17T00:00:00+00:00"},
+        {"title": "Gemini Robotics 1.5 Technical Report", "url": "https://storage.googleapis.com/deepmind-media/gemini-robotics/Gemini-Robotics-1-5-Tech-Report.pdf", "report_type": "technical_report"}
+      ]
+    },
+    {
       "id": "qwen-official-report",
       "provider": "Qwen",
-      "name": "Qwen Official Technical Report",
-      "index_url": "https://github.com/QwenLM/Qwen3",
-      "allowed_domains": ["github.com", "raw.githubusercontent.com"],
-      "allowed_path_prefixes": ["/QwenLM/"],
+      "name": "Qwen Official Model Repositories",
+      "index_url": "https://github.com/orgs/QwenLM/repositories?page=1&type=all",
+      "allowed_domains": ["github.com", "raw.githubusercontent.com", "arxiv.org", "qwen.ai"],
+      "follow_path_patterns": ["^/QwenLM/(?:Qwen[0-9][A-Za-z0-9._-]*|Qwen-[A-Za-z0-9._-]+)$"],
+      "max_follow_pages": 30,
+      "priority": 40,
+      "enabled": true,
+      "seed_documents": [
+        {"title": "Qwen3.6-Max-Preview Official Blog", "url": "https://qwen.ai/blog?id=qwen3.6-max-preview", "report_type": "official_blog", "published_at": "2026-04-18T00:00:00+00:00"}
+      ]
+    },
+    {
+      "id": "qwen-official-blog",
+      "provider": "Qwen",
+      "name": "Qwen Official Research Blog",
+      "index_url": "https://qwen.ai/blog",
+      "allowed_domains": ["qwen.ai", "github.com", "arxiv.org", "huggingface.co"],
+      "follow_path_patterns": ["^/blog$"],
+      "max_follow_pages": 30,
+      "priority": 39,
+      "enabled": false
+    },
+    {
+      "id": "qwen-official-report-page-2",
+      "provider": "Qwen",
+      "name": "Qwen Official Model Repositories · Page 2",
+      "index_url": "https://github.com/orgs/QwenLM/repositories?page=2&type=all",
+      "allowed_domains": ["github.com", "raw.githubusercontent.com", "arxiv.org", "qwen.ai"],
+      "follow_path_patterns": ["^/QwenLM/(?:Qwen[0-9][A-Za-z0-9._-]*|Qwen-[A-Za-z0-9._-]+)$"],
+      "max_follow_pages": 30,
+      "priority": 41,
+      "enabled": true
+    },
+    {
+      "id": "qwen-official-report-page-3",
+      "provider": "Qwen",
+      "name": "Qwen Official Model Repositories · Page 3",
+      "index_url": "https://github.com/orgs/QwenLM/repositories?page=3&type=all",
+      "allowed_domains": ["github.com", "raw.githubusercontent.com", "arxiv.org", "qwen.ai"],
+      "follow_path_patterns": ["^/QwenLM/(?:Qwen[0-9][A-Za-z0-9._-]*|Qwen-[A-Za-z0-9._-]+)$"],
+      "max_follow_pages": 30,
+      "priority": 42,
+      "enabled": true
+    },
+    {
+      "id": "qwen-official-report-page-4",
+      "provider": "Qwen",
+      "name": "Qwen Official Model Repositories · Page 4",
+      "index_url": "https://github.com/orgs/QwenLM/repositories?page=4&type=all",
+      "allowed_domains": ["github.com", "raw.githubusercontent.com", "arxiv.org", "qwen.ai"],
+      "follow_path_patterns": ["^/QwenLM/(?:Qwen[0-9][A-Za-z0-9._-]*|Qwen-[A-Za-z0-9._-]+)$"],
+      "max_follow_pages": 30,
+      "priority": 43,
+      "enabled": true
+    },
+    {
+      "id": "qwen-official-report-page-5",
+      "provider": "Qwen",
+      "name": "Qwen Official Model Repositories · Page 5",
+      "index_url": "https://github.com/orgs/QwenLM/repositories?page=5&type=all",
+      "allowed_domains": ["github.com", "raw.githubusercontent.com", "arxiv.org", "qwen.ai"],
+      "follow_path_patterns": ["^/QwenLM/(?:Qwen[0-9][A-Za-z0-9._-]*|Qwen-[A-Za-z0-9._-]+)$"],
+      "max_follow_pages": 30,
+      "priority": 44,
+      "enabled": true
+    },
+    {
+      "id": "qwen-official-report-page-6",
+      "provider": "Qwen",
+      "name": "Qwen Official Model Repositories · Page 6",
+      "index_url": "https://github.com/orgs/QwenLM/repositories?page=6&type=all",
+      "allowed_domains": ["github.com", "raw.githubusercontent.com", "arxiv.org", "qwen.ai"],
+      "follow_path_patterns": ["^/QwenLM/(?:Qwen[0-9][A-Za-z0-9._-]*|Qwen-[A-Za-z0-9._-]+)$"],
+      "max_follow_pages": 30,
+      "priority": 45,
+      "enabled": true
+    },
+    {
+      "id": "seed-publications",
+      "provider": "ByteDance Seed",
+      "name": "ByteDance Seed Publications",
+      "index_url": "https://seed.bytedance.com/api/get_article_list_v2?article_type=1&page_token=0&count=20&order_desc=true",
+      "allowed_domains": ["seed.bytedance.com", "lf3-static.bytednsdoc.com", "arxiv.org"],
+      "request_headers": {"x-tt-locale": "US"},
+      "pagination": "seed_article_list",
+      "priority": 41,
+      "enabled": true
+    },
+    {
+      "id": "seed-official-repositories",
+      "provider": "ByteDance Seed",
+      "name": "ByteDance Seed Official Repositories",
+      "index_url": "https://github.com/orgs/ByteDance-Seed/repositories?type=all",
+      "allowed_domains": ["github.com", "raw.githubusercontent.com", "arxiv.org"],
+      "follow_path_patterns": ["^/ByteDance-Seed/[A-Za-z0-9._-]+$"],
+      "max_follow_pages": 30,
       "priority": 40,
       "enabled": true
+    },
+    {
+      "id": "seed-model-blog",
+      "provider": "ByteDance Seed",
+      "name": "ByteDance Seed Model Launches",
+      "index_url": "https://seed.bytedance.com/en/blog",
+      "allowed_domains": ["seed.bytedance.com", "lf3-static.bytednsdoc.com", "arxiv.org"],
+      "follow_path_patterns": ["^/en/blog/[A-Za-z0-9%._-]+$"],
+      "max_follow_pages": 24,
+      "priority": 9,
+      "enabled": true,
+      "seed_documents": [
+        {"title": "Seedream 5.0 Pro Official Launch", "url": "https://seed.bytedance.com/en/blog/beyond-generation-it-understands-design-introducing-seedream-5-0-pro", "report_type": "official_blog", "published_at": "2026-07-08T00:00:00+00:00"},
+        {"title": "Seed2.1 Officially Released: Advancing AI Productivity", "url": "https://seed.bytedance.com/en/blog/seed2-1-officially-released-advancing-ai-productivity", "report_type": "official_blog", "published_at": "2026-06-23T00:00:00+00:00"},
+        {"title": "Seed2.1 Model Card", "url": "https://lf3-static.bytednsdoc.com/obj/eden-cn/lapzild-tss/ljhwZthlaukjlkulzlp/seed2.1/Seed2_1_Model_Card.pdf", "report_type": "model_card", "published_at": "2026-06-23T00:00:00+00:00"},
+        {"title": "Seed3D 2.0 Official Launch", "url": "https://seed.bytedance.com/en/blog/seed3d-2-0-released-higher-precision-and-greater-usability", "report_type": "official_blog", "published_at": "2026-04-23T00:00:00+00:00"},
+        {"title": "Seed3D 2.0 Technical Report", "url": "https://arxiv.org/pdf/2605.13862", "report_type": "technical_report", "published_at": "2026-04-23T00:00:00+00:00"},
+        {"title": "Seeduplex Official Launch", "url": "https://seed.bytedance.com/en/blog/introducing-seed-full-duplex-speech-llm-attentive-listening-robust-interference-suppression-enabling-more-natural-interaction", "report_type": "official_blog", "published_at": "2026-04-09T00:00:00+00:00"},
+        {"title": "Seed2.0 Official Launch", "url": "https://seed.bytedance.com/en/seed2", "report_type": "official_blog", "published_at": "2026-02-14T00:00:00+00:00"},
+        {"title": "Seed2.0 Model Card", "url": "https://lf3-static.bytednsdoc.com/obj/eden-cn/lapzild-tss/ljhwZthlaukjlkulzlp/seed2/0214/Seed2.0%20Model%20Card.pdf", "report_type": "model_card", "published_at": "2026-02-14T00:00:00+00:00"},
+        {"title": "Seedream 5.0 Lite Official Launch", "url": "https://seed.bytedance.com/en/blog/deeper-thinking-more-accurate-generation-introducing-seedream-5-0-lite", "report_type": "official_blog", "published_at": "2026-02-13T00:00:00+00:00"},
+        {"title": "Seedance 2.0 Official Launch", "url": "https://seed.bytedance.com/en/blog/seedance-2-0-official-launch", "report_type": "official_blog", "published_at": "2026-02-12T00:00:00+00:00"}
+      ]
+    },
+    {
+      "id": "zai-model-repositories",
+      "provider": "Z.ai",
+      "name": "Z.ai Official GLM Repositories",
+      "index_url": "https://github.com/orgs/zai-org/repositories",
+      "allowed_domains": ["github.com", "raw.githubusercontent.com", "arxiv.org", "z.ai"],
+      "follow_path_patterns": ["^/zai-org/(?:GLM|glm)[A-Za-z0-9._-]*$"],
+      "max_follow_pages": 30,
+      "priority": 42,
+      "enabled": true,
+      "seed_documents": [
+        {"title": "GLM-5.2 Official Blog", "url": "https://z.ai/blog/glm-5.2", "report_type": "official_blog", "published_at": "2026-06-16T00:00:00+00:00"}
+      ]
+    },
+    {
+      "id": "minimax-news",
+      "provider": "MiniMax",
+      "name": "MiniMax Official Research",
+      "index_url": "https://www.minimax.io/blog",
+      "allowed_domains": ["minimax.io", "www.minimax.io", "file.cdn.minimax.io", "filecdn.minimax.chat", "github.com", "arxiv.org"],
+      "follow_path_patterns": ["^/(?:blog|news)/[A-Za-z0-9._-]+$"],
+      "max_follow_pages": 20,
+      "priority": 43,
+      "enabled": true
+    },
+    {
+      "id": "minimax-official-repositories",
+      "provider": "MiniMax",
+      "name": "MiniMax Official Model Repositories",
+      "index_url": "https://github.com/orgs/MiniMax-AI/repositories?type=all",
+      "allowed_domains": ["github.com", "raw.githubusercontent.com", "arxiv.org"],
+      "follow_path_patterns": ["^/MiniMax-AI/(?:MiniMax|MiniMax-)[A-Za-z0-9._-]+$"],
+      "max_follow_pages": 30,
+      "priority": 42,
+      "enabled": true,
+      "seed_documents": [
+        {"title": "MiniMax-01 Technical Report", "url": "https://arxiv.org/abs/2501.08313", "report_type": "technical_report", "published_at": "2025-01-14T00:00:00+00:00"},
+        {"title": "MiniMax-M1 Technical Report", "url": "https://arxiv.org/abs/2506.13585", "report_type": "technical_report", "published_at": "2025-06-16T00:00:00+00:00"}
+      ]
+    },
+    {
+      "id": "deepseek-r1-official",
+      "provider": "DeepSeek",
+      "name": "DeepSeek-R1 Official Repository",
+      "index_url": "https://github.com/deepseek-ai/DeepSeek-R1",
+      "allowed_domains": ["github.com", "raw.githubusercontent.com"],
+      "priority": 50,
+      "enabled": true,
+      "seed_documents": [
+        {
+          "title": "DeepSeek-R1 Technical Report",
+          "url": "https://github.com/deepseek-ai/DeepSeek-R1/blob/main/DeepSeek_R1.pdf",
+          "report_type": "technical_report"
+        }
+      ]
+    },
+    {
+      "id": "deepseek-v3-official",
+      "provider": "DeepSeek",
+      "name": "DeepSeek-V3 Official Repository",
+      "index_url": "https://github.com/deepseek-ai/DeepSeek-V3",
+      "allowed_domains": ["github.com", "raw.githubusercontent.com", "arxiv.org"],
+      "priority": 51,
+      "enabled": true,
+      "seed_documents": [
+        {
+          "title": "DeepSeek-V3 Technical Report",
+          "url": "https://arxiv.org/pdf/2412.19437",
+          "report_type": "technical_report"
+        }
+      ]
+    },
+    {
+      "id": "deepseek-transparency",
+      "provider": "DeepSeek",
+      "name": "DeepSeek Model Transparency",
+      "index_url": "https://www.deepseek.com/en/transparency/",
+      "allowed_domains": ["deepseek.com", "www.deepseek.com", "cdn.deepseek.com", "fe-static.deepseek.com", "huggingface.co", "cdn.hf.co", "github.com", "arxiv.org"],
+      "follow_path_patterns": ["^/en/transparency/[A-Za-z0-9._-]+$"],
+      "max_follow_pages": 12,
+      "priority": 7,
+      "enabled": true,
+      "seed_documents": [
+        {"title": "DeepSeek-V4 Technical Report", "url": "https://arxiv.org/pdf/2606.19348", "report_type": "technical_report", "published_at": "2026-04-24T00:00:00+00:00"},
+        {"title": "DeepSeek-V3.2 Technical Report", "url": "https://huggingface.co/deepseek-ai/DeepSeek-V3.2/resolve/main/assets/paper.pdf?download=true", "report_type": "technical_report", "published_at": "2025-12-01T00:00:00+00:00"}
+      ]
+    },
+    {
+      "id": "kimi-research",
+      "provider": "Moonshot AI",
+      "name": "Kimi Official Research",
+      "index_url": "https://www.kimi.com/blog/",
+      "allowed_domains": ["www.kimi.com", "kimi.com", "platform.kimi.ai", "github.com", "raw.githubusercontent.com", "arxiv.org"],
+      "allowed_path_prefixes": ["/blog/", "/code/", "/docs/", "/MoonshotAI/", "/abs/", "/pdf/"],
+      "follow_path_patterns": ["^/blog/[a-z0-9][a-z0-9-]*$"],
+      "max_follow_pages": 8,
+      "priority": 8,
+      "enabled": true,
+      "seed_documents": [
+        {
+          "title": "Kimi K3 Official Tech Blog",
+          "url": "https://www.kimi.com/blog/kimi-k3",
+          "report_type": "official_blog",
+          "published_at": "2026-07-17T00:00:00+00:00"
+        }
+      ]
+    },
+    {
+      "id": "seed-models",
+      "provider": "ByteDance Seed",
+      "name": "ByteDance Seed Model Releases",
+      "index_url": "https://seed.bytedance.com/en/models",
+      "allowed_domains": ["seed.bytedance.com", "arxiv.org", "github.com", "raw.githubusercontent.com"],
+      "follow_path_patterns": ["^/en/(?:models|research)/[A-Za-z0-9._-]+$"],
+      "max_follow_pages": 16,
+      "priority": 9,
+      "enabled": true
+    },
+    {
+      "id": "kimi-k2-official",
+      "provider": "Moonshot AI",
+      "name": "Kimi K2 Official Repository",
+      "index_url": "https://github.com/MoonshotAI/Kimi-K2",
+      "allowed_domains": ["github.com", "raw.githubusercontent.com", "moonshotai.github.io"],
+      "priority": 60,
+      "enabled": true,
+      "seed_documents": [
+        {
+          "title": "Kimi K2 Technical Report",
+          "url": "https://github.com/MoonshotAI/Kimi-K2/blob/main/tech_report.pdf",
+          "report_type": "technical_report"
+        }
+      ]
+    },
+    {
+      "id": "kimi-k1-5-official",
+      "provider": "Moonshot AI",
+      "name": "Kimi k1.5 Official Repository",
+      "index_url": "https://github.com/MoonshotAI/Kimi-k1.5",
+      "allowed_domains": ["github.com", "raw.githubusercontent.com"],
+      "priority": 61,
+      "enabled": true,
+      "seed_documents": [
+        {
+          "title": "Kimi k1.5 Technical Report",
+          "url": "https://github.com/MoonshotAI/Kimi-k1.5/blob/main/Kimi_k1.5.pdf",
+          "report_type": "technical_report"
+        }
+      ]
     }
   ]
 }

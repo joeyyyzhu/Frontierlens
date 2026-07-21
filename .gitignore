@@ -4,7 +4,10 @@ __pycache__/
 .env
 .venv/
 data/frontierlens.db
+data/*.db-*
 data/raw/
 data/parsed/
 data/snapshots/
+data/backups/
 tmp/
+.pytest_cache/
